@@ -72,7 +72,7 @@ func main() {
 		}
 	}))
 
-	// Serve and listen on port 9000
-	log.Println("Server is running on http://localhost:9000")
-	log.Fatal(http.ListenAndServe(":9000", nil))
+	// Serve and listen on port 6380
+	log.Println("Server is running on http://localhost:6380")
+	log.Fatal(http.ListenAndServe(":6380", nil))
 }

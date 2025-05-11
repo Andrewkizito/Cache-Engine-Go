@@ -37,7 +37,9 @@ func ReadCachEntry(key string) (RawCacheEntry, error) {
 		return RawCacheEntry{}, errors.New("key can not be empty")
 	}
 
-	entry := GetData(key)
+	hashedKey := GenerateHash(key)
+
+	entry := GetData(hashedKey)
 	decodedData, err := base64.StdEncoding.DecodeString(entry.Data)
 
 	if err != nil {
