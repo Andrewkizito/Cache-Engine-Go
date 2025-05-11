@@ -32,6 +32,20 @@ func AddCacheEntry(key string, data RawCacheEntry) (string, error) {
 	return key, nil
 }
 
-func ReadCachEntry() {
-	fmt.Println("Reading from cache")
+func ReadCachEntry(key string) (RawCacheEntry, error) {
+	if key == "" {
+		return RawCacheEntry{}, errors.New("key can not be empty")
+	}
+
+	entry := GetData(key)
+	decodedData, err := base64.StdEncoding.DecodeString(entry.Data)
+
+	if err != nil {
+		return RawCacheEntry{}, errors.New("failed to decode data")
+	}
+
+	return RawCacheEntry{
+		ContentType: entry.ContentType,
+		Raw:         decodedData,
+	}, nil
 }
