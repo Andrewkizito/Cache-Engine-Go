@@ -5,7 +5,7 @@ FROM golang:1.24
 WORKDIR /app
 
 # Copy go.mod and go.sum files first to leverage Docker layer caching
-COPY go.mod go.sum ./
+COPY go.* ./
 
 # Download dependencies
 RUN go mod download
